@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Average Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #102030;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #CE4420;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #102030;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid rgb(17, 10, 10);
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #102030;
+        }
+        .average {
+            font-size: 1.2em;
+            color: #102030;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Grade Average Calculator</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody id="grades-table">
+                
+            </tbody>
+        </table>
+        <button onclick="calculateAverage()">Calculate Average</button>
+        <div class="average" id="average-grade">Average Grade: </div>
+    </div>
+    
+    <script>
+    
+        const grades = {
+            "MATH": 75,
+            "SCIENCE": 75,
+            "AP": 75,
+            "ENGLISH": 75,
+            "MAPEH": 75
+        };
+
+        
+        function calculateAverage() {
+            const total = Object.values(grades).reduce((acc, grade) => acc + grade, 0);
+            const average = (total / Object.values(grades).length).toFixed(2);
+            document.getElementById('average-grade').textContent = "Average Grade: " + average;
+        }
+
+        // Insert grades into the table
+        const gradesTable = document.getElementById('grades-table');
+        for (const [subject, grade] of Object.entries(grades)) {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${subject}</td><td>${grade}</td>`;
+            gradesTable.appendChild(row);
+        }
+    </script>
+</body>
+</html>
